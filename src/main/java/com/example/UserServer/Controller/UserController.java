@@ -7,13 +7,9 @@ import com.example.UserServer.Entity.User;
 import com.example.UserServer.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -30,6 +26,7 @@ public class UserController {
     public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
         // UserService를 통해 사용자 등록 로직 수행
         userService.registerUser(userDto);
+        System.out.println(userDto.getEmail());
         return ResponseEntity.ok().body("User registered successfully");
     }
 
